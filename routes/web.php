@@ -11,3 +11,8 @@ Route::get('/email', function () {
 
     echo '<h1>Email enviado com sucesso!</h1><br>';
 });
+
+Route::get('/admin', function () {
+   $admin = \App\Models\User::with('detail','department')->find(1);
+   dd($admin->toArray());
+});
