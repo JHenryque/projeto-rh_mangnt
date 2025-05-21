@@ -17,3 +17,6 @@ Route::get('/admin', function () {
 
    return view('admin', compact('admin'));
 });
+
+Route::view('/', 'home')->name('home');
+Route::view('/login', 'auth.login')->name('login');
