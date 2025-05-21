@@ -10,16 +10,19 @@
     <!-- resources -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
     <!-- custom -->
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 </head>
 
 <body>
 
-                {{ $slot }}
+{{ $slot }}
 
 <!-- resources -->
+<script src="{{ asset('assets/datatables/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
 
 </body>
 
