@@ -22,5 +22,6 @@ Route::view('/login', 'auth.login')->name('login');
 
 Route::middleware('auth')->group(function () {
 
-    Route::view('/', 'home')->name('home');
+    Route::redirect('/', 'home');
+    Route::view('/home', 'home')->name('home');
 });
