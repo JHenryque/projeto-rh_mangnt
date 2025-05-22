@@ -36,6 +36,10 @@
 
                     </form>
 
+                    @if(session('status'))
+                        <div class="mt-5 alert alert-success py-2 text-center">Senha alterada com sucésso!</div>
+                    @endif
+
                 </div>
 
             </div>
