@@ -11,8 +11,9 @@
                 <!-- redefine password -->
                 <div class="card p-5">
 
-                    <form action="{{ route('password.reset') }}" method="post">
-
+                    <form action="{{ route('password.update') }}" method="post">
+                    @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
                         <div class="mb-3">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email">
