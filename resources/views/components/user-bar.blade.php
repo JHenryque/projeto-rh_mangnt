@@ -17,13 +17,13 @@
             {{ Auth::user()->name }}
         </a>
 {{--        Logout         --}}
+
         <form action="{{ route('logout') }}" method="post">
             @csrf
             <button type="submit" class="btn btn-sm btn-danger">
                 <i class="fas fa-sign-out-alt"></i>
             </button>
         </form>
-
 
     </div>
 
