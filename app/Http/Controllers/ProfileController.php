@@ -40,4 +40,24 @@ class ProfileController extends Controller
          $user->save();
          return redirect()->back()->with('success', 'Senha alterada com sucesso!');
      }
+
+     public function profileUserChangeData(Request $request)
+     {
+         $request->validate([
+             'name' => 'required|min:16|max:100',
+             'email' => 'required|email|email=email',
+         ],
+             [
+                 'nome.required' => 'Campo Nome é obrigatorio',
+                 'email.required' => 'Campo E-mail é obrigatorio',
+
+             ]);
+
+         $user = auth()->user();
+
+         $user->name = $request->name;
+         $user->email = $request->email;
+         $user->save();
+         return redirect()->back()->with('success_change_data', 'Change data alterada com sucesso!');
+     }
 }
