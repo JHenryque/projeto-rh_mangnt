@@ -8,7 +8,6 @@
             <div class="row">
                 <x-profile-user-change-password />
 
-                {{--       component name - email         --}}
                 <x-profile-user-change-data />
             </div>
         </div>

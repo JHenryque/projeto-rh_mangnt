@@ -1,7 +1,7 @@
 <div class="col-3">
     <div class="border p-5 shadow-sm">
-        <form action="#" method="post">
-
+        <form action="{{ route('user.profile.update-user-data') }}" method="post">
+            @csrf
             <h3>Change user data</h3>
 
             <div class="mb-3">
@@ -21,7 +21,7 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Update user data</button>
+                <button class="btn btn-primary">Update user data</button>
             </div>
 
         </form>
