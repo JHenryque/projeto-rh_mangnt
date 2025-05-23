@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="border p-5 shadow-sm">
-                        <form action="#" method="post">
+                        <form action="{{ route('user.profile.update') }}" method="post">
                             @csrf
                             <h3>Change password</h3>
 
@@ -32,7 +32,7 @@
                                 <label for="new_password_confirmation" class="form-label">Confirm new password</label>
                                 <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control">
                                 @error('new_password_confirmation')
-                                <div class="text-danger">{{ $message }}</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 

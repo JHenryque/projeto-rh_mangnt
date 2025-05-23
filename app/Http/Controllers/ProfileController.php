@@ -12,4 +12,32 @@ class ProfileController extends Controller
      {
          return view('user.profile');
      }
+
+     public function updatePassword(Request $request)
+     {
+         $request->validate([
+             'current_password' => 'required|min:8|max:16',
+             'new_password' => 'required|min:8|max:16|different:current_password',
+             'new_password_confirmation' => 'required|same:new_password',
+         ],
+         [
+             'current_password.required' => 'Campo Senha obrigatorio',
+             'new_password.required' => 'Campo nova Senha obrigatorio',
+             'new_password.different' => 'A nova senha tem de ser diferente do que a senha atual',
+             'new_password_confirmation.required' => 'Campo Repetir a Senha obrigatorio',
+             'new_password_confirmation.same' => 'A senha tem de ser igual a que a senha nova',
+         ]);
+
+         $user = auth()->user();
+
+         //check if the current password is correct
+         if (!password_verify($request->current_password, $user->password))
+         {
+             return redirect()->back()->with('error', 'Senha nova incorreta!');
+         }
+
+         $user->password = bcrypt($request->new_password);
+         $user->save();
+         return redirect()->back()->with('success', 'Senha alterada com sucesso!');
+     }
 }
