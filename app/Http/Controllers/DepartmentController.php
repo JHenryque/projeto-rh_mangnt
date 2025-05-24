@@ -39,4 +39,13 @@ class DepartmentController extends Controller
 
         return redirect()->route('departments');
     }
+
+    public function editDepartment(Department $department): View
+    {
+        return view('department.edit-department', compact('department'));
+    }
+
+    public function updateDepartment(Request $request, Department $department) {
+        Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
+    }
 }
