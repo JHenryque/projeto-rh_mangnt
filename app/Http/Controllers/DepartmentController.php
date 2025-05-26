@@ -40,12 +40,49 @@ class DepartmentController extends Controller
         return redirect()->route('departments');
     }
 
-    public function editDepartment(Department $department): View
+    public function editDepartment(Request $request)
     {
+        Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
+
+        // check if id
+        if (intval($request->id) === 1)
+        {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($request->id); // esse metodo vai busca o id se nao encontra vai aprece uma mensagem generica
+
         return view('department.edit-department', compact('department'));
     }
 
-    public function updateDepartment(Request $request, Department $department) {
+    public function updateDepartment(Request $request) {
         Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
+
+        $id = $request->id;
+
+        $request->validate([
+            'id' => 'required',
+            'name' => 'required|string|max:50|unique:departments', $id,
+        ],[
+            'name.required' => 'Campo nome obrigatorio.',
+            'name.string' => 'Campo nome deve ser letras.',
+            'name.max' => 'Campo nome deve ter :max caracteres.',
+            'name.unique'=> 'Nome ja existe.',
+        ]);
+
+        // check if id
+        if (intval($id) === 1)
+        {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($id);
+
+        $department->update([
+            'name'=> $request->name,
+        ]);
+
+        return redirect()->route('departments');
     }
+
 }
