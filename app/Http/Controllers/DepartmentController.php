@@ -40,17 +40,17 @@ class DepartmentController extends Controller
         return redirect()->route('departments');
     }
 
-    public function editDepartment(Request $request)
+    public function editDepartment($id)
     {
         Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
 
         // check if id
-        if (intval($request->id) === 1)
+        if (intval($id) === 1)
         {
             return redirect()->route('departments');
         }
 
-        $department = Department::findOrFail($request->id); // esse metodo vai busca o id se nao encontra vai aprece uma mensagem generica
+        $department = Department::findOrFail($id); // esse metodo vai busca o id se nao encontra vai aprece uma mensagem generica
 
         return view('department.edit-department', compact('department'));
     }
@@ -85,4 +85,33 @@ class DepartmentController extends Controller
         return redirect()->route('departments');
     }
 
+    public function deleteDepartment($id)
+    {
+        Auth::user()->can('admin') ?: abort(403, 'You are not allowed to access this page');
+
+
+        // check if id
+        if (intval($id) === 1)
+        {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($id);
+
+        return view('department.delete-department-confirm', compact('department'));
+    }
+
+    public function deleteDepartmentConfirm($id) {
+        Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
+
+        if (intval($id) === 1)
+        {
+            return redirect()->route('departments');
+        }
+
+        $department = Department::findOrFail($id);
+        $department->delete();
+
+        return redirect()->route('departments');
+    }
 }
