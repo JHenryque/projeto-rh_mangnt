@@ -16,4 +16,11 @@ class RhUserController extends Controller
 
         return view('colaborators.rh-users', compact('colaborators'));
     }
+
+    public function newColarator()
+    {
+        Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
+
+        return view('colaborators.add-rh-user');
+    }
 }
