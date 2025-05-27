@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,8 @@ class RhUserController extends Controller
     {
         Auth::user()->can('admin') ? : abort(403, 'You are not allowed to access this page');
 
-        return view('colaborators.add-rh-user');
+        $departments = Department::all();
+
+        return view('colaborators.add-rh-user', compact('departments'));
     }
 }
