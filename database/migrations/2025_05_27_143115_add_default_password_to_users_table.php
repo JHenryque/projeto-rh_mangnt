@@ -19,10 +19,13 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    // php artisan migrate:refresh criado um refrexh para limpar dodos atributos do banco de dados par adicionar outros atributos
+    //----- depios------
+    // php artisan db:seed --class=AdminSeeder para addicionar novamento os dados do admin
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('password')->nullable(false)->change();
-        });
+//        Schema::table('users', function (Blueprint $table) {
+//            $table->string('password')->nullable(false)->change();
+//        });
     }
 };
