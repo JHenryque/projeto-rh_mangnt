@@ -2,7 +2,7 @@
 
     <div class="w-100 p-4">
 
-        <h3>Human Resources Colaborators</h3>
+        <h3>Human Resources Colaborator</h3>
 
         <hr>
 
