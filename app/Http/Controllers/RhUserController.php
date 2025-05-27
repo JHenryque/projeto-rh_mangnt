@@ -33,7 +33,7 @@ class RhUserController extends Controller
 
         $request->validate([
             'name'=>'required|string|max:255',
-            'email'=>'required|email|max:255|unique:users,enail',
+            'email'=>'required|email|max:255|unique:users,email',
             'select_department'=>'required|exists:departments,id',
         ]);
 
@@ -43,9 +43,9 @@ class RhUserController extends Controller
         $user->email = $request->email;
         $user->role = 'rh';
         $user->department_id = $request->select_department;
-        $user->permissions = 'role';
+        $user->permissions = '["rh"]';
         $user->save();
 
-        return redirect()->route('colaborators.rh-users').with('success', 'Colaborator created successfully');
+        return redirect()->route('colaborators.rh-users')->with('success', 'Colaborator created successfully');
     }
 }
