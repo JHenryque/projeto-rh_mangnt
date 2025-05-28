@@ -30,5 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/rh-users', [RhUserController::class, 'index'])->name('colaborators.rh-users');
     Route::get('/rh-users/new-colaborators', [RhUserController::class, 'newColarator'])->name('colaborators.new-colaborator');
     Route::post('/rh-users/create-colaborators', [RhUserController::class, 'createRhColarator'])->name('colaborators.create-colaborator');
+
+    // detail rh colaborator
+    Route::get('/rh-users/edit-colarator/{id}', [RhUserController::class, 'editRhColarator'])->name('colaborators.edit-colarator');
+    Route::post('/rh-user/update-colaborator', [RhUserController::class, 'updateRhColarator'])->name('colaborators.update-colaborator');
+    Route::get('rh-user/deleted-colaborator/{id}', [RhUserController::class, 'deleteRhColarator'])->name('colaborators.delete-colarator');
+    Route::get('rh-user/deleted-confirm/{id}', [RhUserController::class, 'deleteRhColaratorConfirm'])->name('colaborators.delete-confirm');
 });
 
