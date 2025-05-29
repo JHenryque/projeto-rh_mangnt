@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmAccountController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RhUserController;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/rh-user/update-colaborator', [RhUserController::class, 'updateRhColarator'])->name('colaborators.update-colaborator');
     Route::get('rh-user/deleted-colaborator/{id}', [RhUserController::class, 'deleteRhColarator'])->name('colaborators.delete-colarator');
     Route::get('rh-user/deleted-confirm/{id}', [RhUserController::class, 'deleteRhColaratorConfirm'])->name('colaborators.delete-confirm');
+
+    // email confirmation and password definition
+    Route::get('/confirm-account/{id}', [ConfirmAccountController::class, 'confirmAccount'])->name('confirm-account');
 });
 
