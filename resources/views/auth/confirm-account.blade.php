@@ -26,13 +26,13 @@
 
                         <div class="mb-3">
                             <label for="password_confirmation">Confirm password</label>
-                            <input type="password_confirmation" class="form-control" id="password_confirmation" name="password_confirmation">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                             @error('password_confirmation')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
 
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-end align-items-center">
                             <button type="submit" class="btn btn-primary px-4">Confirme</button>
                         </div>
 

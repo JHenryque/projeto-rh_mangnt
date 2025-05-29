@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\u;
 
 class ConfirmAccountController extends Controller
 {
@@ -25,7 +26,15 @@ class ConfirmAccountController extends Controller
         $request->validate([
             'token' => 'required|string|size:60',
             'password' => 'required|min:8|confirmed|max:20|regex:/^(?=.*[a-z])(?=.*\d).+$/',
-            'password_confirmation' => 'required|confirmed',
+            'password_confirmation' => 'required',
         ]);
+
+        $user = User::where('confirmation_token', $request->token)->first();
+        $user->password = bcrypt($request->password);
+        $user->confirmation_token = null;
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect()->route('login')->with('success', 'Your password has been confirmed!');
     }
 }
