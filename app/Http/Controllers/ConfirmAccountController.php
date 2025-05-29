@@ -35,6 +35,6 @@ class ConfirmAccountController extends Controller
         $user->email_verified_at = now();
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Your password has been confirmed!');
+        return view('auth.welcome')->with('user', $user);
     }
 }
