@@ -33,6 +33,11 @@ class ColaboratorsController extends Controller
             ->where('id', $id)
             ->first();
 
+        // check if colaborator exists
+        if (!$colaborator) {
+            abort(404, 'Colaborator not found');
+        }
+
          return view('colaborators.show-details')->with('colaborator', $colaborator);
     }
 

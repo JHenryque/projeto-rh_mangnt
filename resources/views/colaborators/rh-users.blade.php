@@ -46,8 +46,8 @@
                         <td>
                             <div class="d-flex gap-3 justify-content-end">
 
-                                    <a href="{{ route('colaborators.edit-colarator', ['id'=> $colaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
                                 @if(empty($colaborator->deleted_at))
+                                    <a href="{{ route('colaborators.edit-colarator', ['id'=> $colaborator->id]) }}" class="btn btn-sm btn-outline-dark ms-3"><i class="fa-regular fa-pen-to-square me-2"></i>Edit</a>
                                     <a href="{{ route('colaborators.delete-colarator', ['id'=> $colaborator->id]) }}" class="btn btn-sm btn-outline-danger ms-3"><i class="fa-regular fa-trash-can me-2"></i>Delete</a>
                                 @else
                                      <a href="{{ route('colaborators.rh.restore', ['id'=> $colaborator->id]) }}" class="btn btn-sm btn-outline-danger ms-3"><i class="fa-solid fa-trash-arrow-up me-2"></i>Restore</a>
