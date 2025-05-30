@@ -12,30 +12,36 @@
                 <a href="{{ route('colaborators.new-colaborator') }}" class="btn btn-primary">Create a new Colaborator</a>
             </div>
         @else
-
             <div class="mb-3">
                 <a href="{{ route('colaborators.new-colaborator') }}" class="btn btn-primary">Create a new Colaborator</a>
             </div>
-
             <table class="table" id="table">
-                <thead class="table-dark">
-                <th>Nome</th>
-                <th>E-mail</th>
-                <th>Role</th>
-                <th>Salary</th>
-                <th>Admission date</th>
-                <th>City</th>
-                <th></th>
-                </thead>
-                <tbody>
-                @foreach($colaborators as $colaborator)
-                    <tr>
-                        <td>{{ $colaborator->name }}</td>
-                        <td>{{ $colaborator->email }}</td>
-                        <td>{{ $colaborator->role }}</td>
-                        <td>{{ $colaborator->detail->salary }}</td>
-                        <td>{{ $colaborator->detail->admission_date }}</td>
-                        <td>{{ $colaborator->detail->city }}</td>
+                    <thead class="table-dark">
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Active</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                    <th>Admission date</th>
+                    <th>Salary</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                    @foreach($colaborators as $colaborator)
+                        <tr>
+                            <td>{{ $colaborator->name }}</td>
+                            <td>{{ $colaborator->email }}</td>
+                            <td>
+                                @empty($colaborator->email_verified_at)
+                                    <div class="badge bg-danger">No</div>
+                                @else
+                                    <div class="badge bg-success">Yes</div>
+                                @endempty
+                            </td>
+                            <td>{{ $colaborator->department->name }}</td>
+                            <td>{{ $colaborator->role }}</td>
+                            <td>{{ $colaborator->detail->admission_date }}</td>
+                            <td>{{ $colaborator->detail->salary }}</td>
 
                         <td>
                             <div class="d-flex gap-3 justify-content-end">
@@ -49,9 +55,8 @@
                 @endforeach
                 </tbody>
             </table>
-
-
         @endif
+
     </div>
 
 </x-layout-app>
