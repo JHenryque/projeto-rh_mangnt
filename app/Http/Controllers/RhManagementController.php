@@ -103,5 +103,23 @@ class RhManagementController extends Controller
     public function updateColaborator(Request $request)
     {
         Auth::user()->can('rh') ? : abort(403, 'You are not allowed to access this page');
+
+        $request->validate([]);
+
+        // check if department is valid
+        if ($request->select_department <= 2) {
+            return redirect()->route('home');
+        }
+
+        $user = User::with('detail')->findOrFail($request->user_id);
+        $user->detail->salary = $request->salary;
+        $user->detail->admission_date  = $request->admission_date;
+        $user->department_id = $request->select_department;
+
+        $user->save();
+        $user->detail->save();
+
+        return redirect()->route('rh.management.home')->with('success', 'Colaborator updated successfully');
+
     }
 }
