@@ -24,8 +24,10 @@ Route::middleware('auth')->group(function () {
         // ckeck if user is admin
         if (auth()->user()->role === 'admin') {
             return redirect()->route('admin.home');
-        } else {
+        } else if (auth()->user()->role === 'rh') {
             return  redirect()->route('rh.management.home');
+        } else {
+            die('aceseço restringido');
         }
     })->name('home');
 
@@ -60,8 +62,11 @@ Route::middleware('auth')->group(function () {
     Route::get('rh-user/deleted-confirm/{id}', [RhUserController::class, 'deleteRhColaratorConfirm'])->name('colaborators.delete-confirm');
     Route::get('/rh-users/restore/{id}', [RhUserController::class, 'restoreRhColaborator'])->name('colaborators.rh.restore');
 
+    // rh management
     Route::get('/rh-users/management/home', [RhManagementController::class, 'home'])->name('rh.management.home');
     Route::get('/rh-users/management/new-colaborator', [RhManagementController::class, 'newColarator'])->name('rh.management.new-colaborator');
+    Route::post('/rh-users/management/create-colaborator', [RhManagementController::class, 'createColarator'])->name('rh.management.create-colaborator');
+    //createColarator
 
     // admin colaboratirs list
     Route::get('/colaborators', [ColaboratorsController::class, 'index'])->name('colaborators.all-colaborators');

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmAccountEmail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AdminController extends Controller
@@ -14,4 +18,5 @@ class AdminController extends Controller
 
         return view('home');
     }
+
 }
