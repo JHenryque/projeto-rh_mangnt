@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ColaboratorsController;
 use App\Http\Controllers\ConfirmAccountController;
 use App\Http\Controllers\DepartmentController;
@@ -22,11 +23,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', function (){
         // ckeck if user is admin
         if (auth()->user()->role === 'admin') {
-          return  view('home');
+            return redirect()->route('admin.home');
         } else {
             return  redirect()->route('rh.management.home');
         }
     })->name('home');
+
+    // admin home
+    Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
 
     // user profile page
     Route::get('/user/profile', [ProfileController::class, 'index'])->name('user.profile');
