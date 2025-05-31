@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::get('rh-user/deleted-confirm/{id}', [RhUserController::class, 'deleteRhColaratorConfirm'])->name('colaborators.delete-confirm');
     Route::get('/rh-users/restore/{id}', [RhUserController::class, 'restoreRhColaborator'])->name('colaborators.rh.restore');
 
-    Route::get('/rh-user/management/home', [RhManagementController::class, 'home'])->name('rh.management.home');
+    Route::get('/rh-users/management/home', [RhManagementController::class, 'home'])->name('rh.management.home');
+    Route::get('/rh-users/management/new-colaborator', [RhManagementController::class, 'newColarator'])->name('rh.management.new-colaborator');
 
     // admin colaboratirs list
     Route::get('/colaborators', [ColaboratorsController::class, 'index'])->name('colaborators.all-colaborators');
