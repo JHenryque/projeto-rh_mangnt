@@ -76,5 +76,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/colaborators/delete/{id}', [ColaboratorsController::class, 'deleteColaborator'])->name('colaborators.delete');
     Route::get('/colaborators/delete-confirm/{id}', [ColaboratorsController::class, 'deleteColaboratorConfirmation'])->name('colaborators.delete-confirm');
     Route::get('/colaborators/restore/{id}', [ColaboratorsController::class, 'restoreColaborator'])->name('colaborators.restore');
+
+    // home colaborator
+
+    // inicio rh
 });
 
