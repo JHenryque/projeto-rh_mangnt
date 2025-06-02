@@ -15,7 +15,7 @@
             <div class="d-flex gap-3">
                 <div class="mb-3">
                     <label for="zip_code" class="form-label">Zip code</label>
-                    <input type="zip_code" name="zip_code" id="zip_code" class="form-control">
+                    <input type="text" name="zip_code" id="zip_code" class="form-control">
                     @error('zip_code')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -23,7 +23,7 @@
 
                 <div class="mb-3">
                     <label for="city" class="form-label">City</label>
-                    <input type="city" name="city" id="city" class="form-control">
+                    <input type="text" name="city" id="city" class="form-control">
                     @error('city')
                     <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -32,7 +32,7 @@
 
             <div class="mb-3">
                 <label for="phone" class="form-label">Phone</label>
-                <input type="phone" name="phone" id="phone" class="form-control">
+                <input type="text" name="phone" id="phone" class="form-control">
                 @error('phone')
                 <div class="text-danger">{{ $message }}</div>
                 @enderror
@@ -47,7 +47,7 @@
 
         @if(session('success_change_address'))
             <div class="alert alert-success mt-3">
-                {{ session('success_change_data') }}
+                {{ session('success_change_address') }}
             </div>
         @endif
 
