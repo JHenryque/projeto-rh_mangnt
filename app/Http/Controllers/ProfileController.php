@@ -11,7 +11,9 @@ class ProfileController extends Controller
     //
      public function index(): View
      {
-         return view('user.profile');
+         $colaborator = User::with('detail', 'department')->findOrFail(auth()->id());
+
+         return view('user.profile')->with('colaborator', $colaborator);
      }
 
      public function updatePassword(Request $request)
