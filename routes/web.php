@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/rh-users/management/create-colaborator', [RhManagementController::class, 'createColarator'])->name('rh.management.create-colaborator');
     Route::get('/rh-users/management/edit-colaborator/{id}', [RhManagementController::class, 'editColaborator'])->name('rh.management.edit-colaborator');
     Route::post('/rh-users/management/update-colaborator', [RhManagementController::class, 'updateColaborator'])->name('rh.management.update-colaborator');
+    Route::get('/rh-users/management/details/{id}', [RhManagementController::class, 'ShowDetails'])->name('rh.management.details');
     //createColarator
 
     // admin colaboratirs list
