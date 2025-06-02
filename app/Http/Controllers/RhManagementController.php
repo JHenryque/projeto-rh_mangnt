@@ -158,4 +158,5 @@ class RhManagementController extends Controller
 
         return redirect()->route('rh.management.home')->with('success', 'Colaborator restored successfully');
     }
+
 }

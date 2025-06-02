@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
         } else if (auth()->user()->role === 'rh') {
             return  redirect()->route('rh.management.home');
         } else {
-            die('aceseço restringido');
+            return redirect()->route('colaborator');
         }
     })->name('home');
 
@@ -83,6 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/colaborators/restore/{id}', [ColaboratorsController::class, 'restoreColaborator'])->name('colaborators.restore');
 
     // home colaborator
+    Route::get('/colaborator', [ColaboratorsController::class, 'home'])->name('colaborator');
 
     // inicio rh
 });
