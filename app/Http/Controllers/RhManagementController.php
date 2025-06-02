@@ -129,4 +129,22 @@ class RhManagementController extends Controller
         $colaborator = User::with('detail', 'department')->findOrFail($id);
         return view('colaborators.show-details', compact('colaborator'));
     }
+
+    public function deleteColaborator($id)
+    {
+        Auth::user()->can('rh') ? : abort(403, 'You are not allowed to access this page');
+        $colaborator = User::with('detail')->findOrFail($id);
+        return view('colaborators.delete-colaborator', compact('colaborator'));
+    }
+
+    public function deleteColaboratorConfirm($id)
+    {
+        Auth::user()->can('rh') ? : abort(403, 'You are not allowed to access this page');
+
+        $colaborator = User::findOrFail($id);
+
+        $colaborator->delete();
+
+        return redirect()->route('rh.management.home')->with('success', 'Colaborator deleted successfully');
+    }
 }
