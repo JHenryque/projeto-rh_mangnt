@@ -18,7 +18,7 @@ class RhManagementController extends Controller
         Auth::user()->can('rh') ? : abort(403, 'You are not authorized to view this page');
 
         // get all colaboratrs that are not role admin nor role rh
-        $colaborators = User::with('detail', 'department')->where('role', 'colaborator')->get();
+        $colaborators = User::with('detail', 'department')->where('role', 'colaborator')->withTrashed()->get();
 
         return view('colaborators.colaborators')->with('colaborators', $colaborators);
     }
@@ -146,5 +146,16 @@ class RhManagementController extends Controller
         $colaborator->delete();
 
         return redirect()->route('rh.management.home')->with('success', 'Colaborator deleted successfully');
+    }
+
+    public function restoreColaborator($id)
+    {
+        Auth::user()->can('rh') ? : abort(403, 'You are not allowed to access this page');
+
+        $colaborator = User::withTrashed()->findOrFail($id);
+
+        $colaborator->restore();
+
+        return redirect()->route('rh.management.home')->with('success', 'Colaborator restored successfully');
     }
 }
