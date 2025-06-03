@@ -42,12 +42,20 @@ class AdminController extends Controller
         });
 
         // total salaru by department
-        $data['total_colaborators_by_department'] = User::withoutTrashed()->with('department', 'detail')->get()->groupBy('department_id')->map(function ($department) {
+        $data['total_salary_by_department'] = User::withoutTrashed()->with('department', 'detail')->get()->groupBy('department_id')->map(function ($department) {
             return [
                 'department' => $department->first()->department->name ?? " - ",
                 'total' => $department->sum(function ($colaborator) {
                     return $colaborator->detail->salary;
                 }),
+            ];
+        });
+
+        // format salary
+        $data['total_salary_by_department'] = $data['total_salary_by_department']->map(function ($department) {
+            return [
+                'department'=> $department['department'],
+                'total' => number_format($department['total'], 2, ',', '.') . ' $',
             ];
         });
 
