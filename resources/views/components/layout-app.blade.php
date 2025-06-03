@@ -25,10 +25,11 @@
  </div>
 
 
-<!-- resources -->
-<script src="{{ asset('assets/datatables/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+    <!-- resources -->
+    <script src="{{ asset('assets/datatables/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
