@@ -30,6 +30,9 @@ class AdminController extends Controller
             return $colaborator->detail->salary;
         });
 
+        // formatado o valor
+        $data['total_salary'] = number_format($data['total_salary'], 2, ',', '.') . ' $';
+
         // total colaborators by department
         $data['total_colaborators_per_department'] = User::withoutTrashed()->with('department')->get()->groupBy('department_id')->map(function ($department) {
             return [
@@ -48,9 +51,8 @@ class AdminController extends Controller
             ];
         });
 
-        dd($data);
 
-        return view('home');
+        return view('home', compact('data'));
     }
 
 }
